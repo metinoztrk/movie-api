@@ -22,7 +22,7 @@ describe('/api/movies tests',()=>{
         it('it should all the movie',(done)=>{
             chai.request(server)
             .get('/api/movies')
-            .set('x-access-token','ascas')
+            .set('x-access-token',token)
             .end((err,res)=>{
                 res.should.have.status(200);
                 res.body.should.be.a('array');

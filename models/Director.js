@@ -15,7 +15,7 @@ const DirectorSchema=new Schema({
     bio:{
         type:String,
         maxlength:500,
-        minlength:50
+        minlength:3
     },
     createdAt:{
         type:Date,
