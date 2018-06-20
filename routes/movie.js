@@ -62,7 +62,7 @@ router.delete('/:movie_id',(req,res,next)=>{
   promise.then((movie)=>{
     if(!movie)
       next({message:'the movie was not found'});
-    res.json(movie);
+    res.json({status:1});
   }).catch((err)=>{
     res.json(err);
   });
@@ -89,7 +89,7 @@ router.post('/', (req, res, next)=> {
 
   const promise=movie.save();
   promise.then((data)=>{
-    res.json({status:1});
+    res.json(data);
   }).catch((err)=>{
     res.json(err);
   })
