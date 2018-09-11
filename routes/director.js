@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose=require('mongoose');
 const router = express.Router();
 
-const Director=require('../models/Director')
+const Director=require('../models/Director');
+const Movie=require('../models/Movie');
 
 router.post('/', (req, res, next)=> {
   const director=new Director(req.body);
@@ -108,6 +109,16 @@ router.get('/:director_id',(req,res)=>{
   }).catch((err)=>{
     res.json(err);
   });
+});
+
+router.get('/:director_id/best10movie',(req,res)=>{
+
+  const promise=Movie.find({director_id:req.params.director_id}).limit(10).sort({imdb_score:-1});
+  promise.then((data)=>{
+    res.json(data);
+  }).catch((err)=>{
+    res.json(err);
+  })
 });
 
 router.put('/:director_id',(req,res,next)=>{
